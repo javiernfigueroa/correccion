@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  margin: 0 ;
+  place-items: center;
+}
+
+.divHeader {
+  width: 100%;
+  color: aliceblue;
+  height: 10vw;
+  padding-top: 3vw;
+}
