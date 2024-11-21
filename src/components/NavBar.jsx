@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  GiFullPizza,
   GiKeyLock,
   GiCombinationLock,
   GiPizzaSlice,
@@ -8,13 +7,7 @@ import {
 } from "react-icons/gi";
 import { GrLogin, GrLogout } from "react-icons/gr";
 import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
+  Disclosure
 } from "@headlessui/react";
 import { formatNumber } from "./funcionesJs.js";
 
@@ -59,7 +52,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Nav_bar = () => {
+const NavBar = () => {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto">
@@ -104,4 +97,4 @@ const Nav_bar = () => {
   );
 };
 
-export default Nav_bar;
+export default NavBar;
