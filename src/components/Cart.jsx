@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { pizzaCart, pizzas } from "./data/pizzas";
 import { formatNumber } from "./funcionesJs.js";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { FaPlus, FaMinus, FaTrashAlt } from "react-icons/fa";
 
     const Cart = () => {
     const [carro, setCarro] = useState(pizzaCart);
@@ -71,7 +71,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
                             className="font-lg text-indigo-600 hover:text-indigo-500"
                             onClick={() => restarPizza(key)}
                             >
-                            <FaMinus />
+                            {(pizza.count!==1)?<FaMinus />: <FaTrashAlt/> }
                             </button>                       
                         </div>
                     </div>
