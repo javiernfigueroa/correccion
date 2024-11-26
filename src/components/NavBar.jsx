@@ -60,11 +60,10 @@ const NavBar = () => {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                {navigation.map((item, index) => (
-                  <>
+                {navigation.map((item, index) => (                  
                     <a
                       style={{ display: "flex" }}
-                      key={item.name}
+                      key={index}
                       href={item.href}
                       aria-current={item.current ? "page" : undefined}
                       className={classNames(
@@ -76,8 +75,7 @@ const NavBar = () => {
                     >
                       {index > 0 ? item.icon : ""}
                       <span>{item.name}</span>
-                    </a>
-                  </>
+                    </a>                  
                 ))}
               </div>
             </div>
