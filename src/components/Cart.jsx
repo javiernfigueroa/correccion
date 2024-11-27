@@ -13,8 +13,18 @@ import { FaPlus, FaMinus, FaTrashAlt } from "react-icons/fa";
     };
 
     const restarPizza = (key) => {
-        carro[key].count--;
-        setCarro([...carro.filter((pizza) => pizza.count > 0)]);
+        if(carro[key].count===1){
+            let text=`La pizza ${carro[key].name.toLocaleUpperCase()},\n sera eliminada del carrito`
+            if (confirm(text) == true) {
+                carro[key].count--;
+                setCarro([...carro.filter((pizza) => pizza.count > 0)]);
+            } else {
+                setCarro([...carro])
+            }
+        }else{
+            carro[key].count--;
+            setCarro([...carro])
+        }       
     };
 
     let subTotal = 0;
@@ -31,11 +41,6 @@ import { FaPlus, FaMinus, FaTrashAlt } from "react-icons/fa";
             <ul role="list" className="divide-y divide-gray-200">
                 {carro.map((pizza, key) => {
                 const eleccion = datoPizza.filter((p) => p.id === pizza.id);
-                let ingredientes = "";
-                eleccion[0].ingredients.forEach((ingredient, index) => {
-                    ingredientes +=
-                    index === 0 ? `${ingredient}` : `, ${ingredient}`;
-                });
                 subTotal = pizza.price * pizza.count;
                 total += subTotal;
                 return (
@@ -54,7 +59,7 @@ import { FaPlus, FaMinus, FaTrashAlt } from "react-icons/fa";
                             <p className="ml-4">${formatNumber(pizza.price)}.-</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
-                            {ingredientes}
+                            {eleccion[0].ingredients.join(", ")}
                         </p>
                         </div>
                         <div className="flex flex-1 items-end justify-between text-lg">
