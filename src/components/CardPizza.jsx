@@ -3,20 +3,16 @@ import { FaPizzaSlice, FaCartArrowDown  } from "react-icons/fa6";
 import { MdReadMore } from "react-icons/md";
 import {formatNumber} from './funcionesJs.js'
 
-const CardPizza = ({ name, price, ingredients, img }) => {
-  /* var ingredientes = "";
-  ingredients.forEach((ingredient, index) => {
-    ingredientes += index === 0 ? `${ingredient}` : `, ${ingredient}`;
-  }); */
-  const priceFormat = formatNumber(price);
+const CardPizza = ({ pizza }) => {
+  const priceFormat = formatNumber(pizza.price);
   return (
     <div style={{margin:"0.5em 0.5em 0.5em 0.5em"}} className="max-w-md rounded overflow-hidden shadow-lg">
-      <img className="w-full" src={img} alt={name}/>
+      <img className="w-full" src={pizza.img} alt={pizza.name}/>
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
+        <div className="font-bold text-xl mb-2">{pizza.name}</div>
         <p style={{display:"flex"}} className="text-gray-700 text-base"><FaPizzaSlice/><span> Ingredientes:</span></p>
         <ul className="list-disc">
-            {ingredients.map((ingredient, key)=>{
+            {pizza.ingredients.map((ingredient, key)=>{
               return <li key={key}>{ingredient}</li>
             })}
         </ul>
