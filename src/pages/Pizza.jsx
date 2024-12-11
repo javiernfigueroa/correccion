@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { FaPizzaSlice, FaRegHandPointLeft } from 'react-icons/fa';
 import { formatNumber } from '../components/funcionesJs';
+import { Link, useParams } from 'react-router-dom';
 
 const Pizza = () => {
+
+    const {id} = useParams();
     const [pizza, setPizza] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url="http://localhost:5000/api/pizzas/p001";
+    const url=`http://localhost:5000/api/pizzas/${id}`;
 
     useEffect(() => {
         const getData = async () => {
@@ -45,10 +48,10 @@ const Pizza = () => {
                         <p className="text-gray-700 text-base">Precio: ${formatNumber(pizza.price)}.-</p>
                     </div>
                     <div className="px-6 pt-4 pb-2">
-                        <button className="inline-flex bg-red-200 rounded-full px-5 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                            type='button'>
+                        <Link className="inline-flex bg-red-200 rounded-full px-5 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                            to='/'>
                             <span>Volver</span> <FaRegHandPointLeft />
-                        </button>
+                        </Link>
                         </div>
                     </div>
                 </div>    

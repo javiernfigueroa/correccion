@@ -10,6 +10,7 @@ import {
   Disclosure
 } from "@headlessui/react";
 import { formatNumber } from "./funcionesJs.js";
+import { Link } from "react-router-dom";
 
 const total = formatNumber(25000);
 const token = false;
@@ -22,13 +23,13 @@ const navigation = [
   },
   {
     name: "Home",
-    href: "#",
+    href: "/",
     current: false,
     icon: <GiPizzaSlice size={"2em"} color="yellow" />,
   },
   {
     name: token ? "Logout" : "Register",
-    href: "#",
+    href: token ? "#" : "/register",
     current: false,
     icon: token ? (
       <GrLogout size={"2em"} color="yellow" />
@@ -38,7 +39,7 @@ const navigation = [
   },
   {
     name: token ? "Profile" : "Login",
-    href: "#",
+    href: token ? "#" : "/login",
     current: false,
     icon: token ? (
       <GiKeyLock size={"2em"} color="yellow" />
@@ -61,10 +62,10 @@ const NavBar = () => {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item, index) => (                  
-                    <a
+                    <Link
                       style={{ display: "flex" }}
                       key={index}
-                      href={item.href}
+                      to={item.href}
                       aria-current={item.current ? "page" : undefined}
                       className={classNames(
                         item.current
@@ -75,19 +76,19 @@ const NavBar = () => {
                     >
                       {index > 0 ? item.icon : ""}
                       <span>{item.name}</span>
-                    </a>                  
+                    </Link>                  
                 ))}
               </div>
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
+            <Link
+              to='/cart'
               className="inline-flex relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <GiShoppingCart size={"2em"} color="yellow" />
               <span>${total}.-</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

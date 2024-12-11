@@ -2,6 +2,7 @@ import React from "react";
 import { FaPizzaSlice, FaCartArrowDown  } from "react-icons/fa6";
 import { MdReadMore } from "react-icons/md";
 import {formatNumber} from './funcionesJs.js'
+import { Link } from "react-router-dom";
 
 const CardPizza = ({ pizza }) => {
   const priceFormat = formatNumber(pizza.price);
@@ -19,9 +20,9 @@ const CardPizza = ({ pizza }) => {
         <p className="text-gray-700 text-base">Precio: ${priceFormat}.-</p>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <button className="inline-flex bg-red-200 rounded-full px-5 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        <Link to={`/pizza/${pizza.id}`} className="inline-flex bg-red-200 rounded-full px-5 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
           <span>Ver mas</span> <MdReadMore/>
-        </button>
+        </Link>
         <button className="inline-flex bg-green-100 rounded-full px-5 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 ">
           <span>Agregar</span> <FaCartArrowDown/>
         </button>
