@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   GiKeyLock,
   GiCombinationLock,
@@ -11,8 +11,8 @@ import {
 } from "@headlessui/react";
 import { formatNumber } from "./funcionesJs.js";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext.jsx";
 
-const total = formatNumber(25000);
 const token = false;
 const navigation = [
   {
@@ -54,6 +54,8 @@ function classNames(...classes) {
 }
 
 const NavBar = () => {
+  const {cart} =useContext(CartContext);
+  const calculaTotal=()=>cart.reduce((total, pizza) => total + pizza.price * pizza.count,0);
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto">
@@ -87,7 +89,7 @@ const NavBar = () => {
               className="inline-flex relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <GiShoppingCart size={"2em"} color="yellow" />
-              <span>${total}.-</span>
+              <span>${formatNumber(calculaTotal())}.-</span>
             </Link>
           </div>
         </div>

@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
+import {PizzaContext} from "../context/PizzaContext"
+
 
 const Home = () => {
-  const [pizzas, setPizzas] = useState([]);
+  const {pizzas, isLoading, error} = useContext(PizzaContext);
+  /* const [pizzas, setPizzas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const urlApi="http://localhost:5000/api/pizzas";
   useEffect(() => {
+    setIsLoading(false);
     const getData=async()=>{
       try {
-        const response = await fetch(urlApi);
-        const data = await response.json();
-        setPizzas([...data])  
+        const response = await axios.get(urlApi);
+        const data = response.data;
+        setPizzas([...data]);
       } catch (error) {
         setError(error);
       }finally{
         setIsLoading(false);
-      }     
+      }    
     }
     getData();
     
-  }, []);
+  }, []); */
   return (
     <>
       <Header />

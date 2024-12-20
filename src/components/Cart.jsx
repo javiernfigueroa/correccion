@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import { pizzaCart, pizzas } from "./data/pizzas";
+import React, { useContext, useState } from "react";
+import { pizzas } from "../data/pizzas.js";
 import { formatNumber } from "./funcionesJs.js";
 import { FaPlus, FaMinus, FaTrashAlt } from "react-icons/fa";
+import { CartContext } from "../context/CartContext.jsx";
 
-    const Cart = () => {
-    const [carro, setCarro] = useState(pizzaCart);
+const Cart = () => {
+    const {cart, setCart} = useContext(CartContext);
     const [datoPizza, setDatoPizza] = useState(pizzas);
-
     const sumarPizza = (key) => {
-        carro[key].count++;
-        setCarro([...carro]);
+        cart[key].count++;
+        setCart([...cart]);
     };
 
     const restarPizza = (key) => {
-        if(carro[key].count===1){
-            let text=`La pizza ${carro[key].name.toLocaleUpperCase()},\n sera eliminada del carrito`
+        if(cart[key].count===1){
+            let text=`La pizza ${cart[key].name.toLocaleUpperCase()},\n sera eliminada del carrito`
             if (confirm(text) == true) {
-                carro[key].count--;
-                setCarro([...carro.filter((pizza) => pizza.count > 0)]);
+                cart[key].count--;
+                setCart([...cart.filter((pizza) => pizza.count > 0)]);
             } else {
-                setCarro([...carro])
+                setCart([...cart])
             }
         }else{
-            carro[key].count--;
-            setCarro([...carro])
+            cart[key].count--;
+            setCart([...cart])
         }       
     };
 
-    const calculaTotal=()=>carro.reduce((total, pizza) => total + pizza.price * pizza.count,0);
+    const calculaTotal=()=>cart.reduce((total, pizza) => total + pizza.price * pizza.count,0);
     
     return (
         <>
@@ -39,7 +39,7 @@ import { FaPlus, FaMinus, FaTrashAlt } from "react-icons/fa";
                 Carrito de compras
             </h2>
             <ul role="list" className="divide-y divide-gray-200">
-                {carro.map((pizza, key) => {
+                {cart.map((pizza, key) => {
                 const eleccion = datoPizza.filter((p) => p.id === pizza.id);
                 return (
                     <li className="flex" key={key}>
